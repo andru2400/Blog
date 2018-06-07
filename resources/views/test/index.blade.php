@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>{{ $article->title}}</title>
+<!--	<link rel="stylesheet" type="text/css" href="/css/general.css"> -->
+<link rel="stylesheet" type="text/css" href="{{ asset('css/general.css') }}">
 </head>
 <body>
 
@@ -14,8 +16,7 @@
 <hr>
 {{ $article->content }}
 <hr>
-{{ $article->user->name }} | {{ $article->category->name }}
-
+{{ $article->user->name }} |
 
 
 </body>

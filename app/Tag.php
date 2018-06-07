@@ -8,6 +8,7 @@ class Tag extends Model
 {
      // Definimos el modelo y mostramos los atributos que queremos mostrar
     protected $table = "tags";
+    
     protected $fillable = ['name'];
 
     public function articles()

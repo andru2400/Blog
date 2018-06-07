@@ -11,10 +11,10 @@ class Article extends Model
     
     protected $fillable = ['title','content','category_id','user_id'];
 
-
-    public function category()
+    public function category() 
     {
-      return $this->belongsTo('App\Category','id');  
+      return $this->belongsTo('App\Category');
+      //return $this->belongsTo('App\Category','id');  
     }
 
  	public function user()
@@ -29,7 +29,7 @@ class Article extends Model
 
 	public function tags()
     {
-      return $this->belongsToMany('App\Tag');  
+      return $this->belongsToMany('App\Tag')->withTimestamps();  
     }
 
 

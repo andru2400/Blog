@@ -18,8 +18,8 @@ dd($id);
     		$article = Article::find($id);
   		//	dd($article);
   		  
-    		$article->category;
-    		$article->user;
+    	//	$article->category;
+    	//	$article->user;
     		$article->tags;
       
            // dd($article);
