@@ -11,9 +11,10 @@
 		@yield('content')
 	</section>
   
-  <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('plugins/bootstrap/js/popper.js') }}"></script>
+  
   <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.slim.min.js') }}"></script>
+  <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('plugins/bootstrap/js/popper.min.js') }}"></script>
 
 </body>
 </html>
