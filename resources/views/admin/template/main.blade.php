@@ -5,10 +5,19 @@
 	<title>@yield('title', 'Default') | Panel de Administracion</title>
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css')}}">
 </head>
-<body>
-@include('admin.template.partials.nav')
-	<section>
-		@yield('content')
+<body class="admin-body">
+
+	@include('admin.template.partials.nav')
+	
+	<section class="section-admin">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">@yield('title')</h3>
+			</div>
+			<div class="panel-body"></div>
+			@include('flash::message')
+			@yield('content')
+		</div>
 	</section>
   
   

@@ -3,9 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+// ya no se usa Interface ni Trait
 
 class Article extends Model
 {
+
+    use Sluggable;
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
      // Definimos el modelo y mostramos los atributos que queremos mostrar
     protected $table = "articles";
     
