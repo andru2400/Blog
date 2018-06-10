@@ -17,7 +17,7 @@ class UsersController extends Controller
     {
         // 
 
-        $users = User::orderBy('id','ASC')->paginate(3);
+        $users = User::orderBy('id','ASC')->paginate(5);
         return view('admin.users.index')->with('users', $users);
         
     }
@@ -45,10 +45,9 @@ class UsersController extends Controller
         
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
-        $user->save();
-        
+        $user->save();        
         Flash::success("Se ha registrado ".$user->name."de forma exitosa");
-        return http_redirect()->route('users.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -70,7 +69,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+      
         //
+        $user = User::find($id);
+        return view('admin.users.edit')->with('user', $user);
     }
 
     /**
@@ -83,6 +85,14 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::find("$id");
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->type = $request->type;
+        $user->save();
+
+        flash::warning('El Usuario'. $user->name.'ha sido  editado con exito');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -93,6 +103,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        flash("El usuario " . $user->name . " a sido eliminado de forma correcta")->important();
+        return redirect()->route('users.index');
     }
 }

@@ -8,7 +8,9 @@
 <body class="admin-body">
 
 	@include('admin.template.partials.nav')
-	
+
+
+<div class="container">	
 	<section class="section-admin">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -19,7 +21,7 @@
 			@yield('content')
 		</div>
 	</section>
-  
+</div>
   
   <script src="{{ asset('plugins/jquery/js/jquery-3.2.1.slim.min.js') }}"></script>
   <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
