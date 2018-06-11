@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
 
-<a href="{{ route('users.create') }}" class="btn btn-primary">Registrar nuevo usuario</a>
+<a href="{{ route('users.create') }}" class="btn btn-primary" style="margin: 0px 0px 10px 0px;">Registrar nuevo usuario</a>
+
 	<table class="table table-striped">
 		<thead>
 			<th>ID</th>
@@ -35,7 +36,7 @@
 		</tbody>
 	</table>
 
-{!! $users->render() !!}
+<div style="margin-left: 40%;">{!! $users->render() !!}</div> 
 
 @endsection
 </div>

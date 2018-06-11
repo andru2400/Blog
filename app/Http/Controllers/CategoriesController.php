@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-Use App\User;
+Use App\Category;
 Use Laracasts\Flash\Flash;
-Use App\Http\Requests\UserRequest;
+Use App\Http\Requests\CategoryRequest;
 
-class UsersController extends Controller
+
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        
-        $users = User::orderBy('id','ASC')->paginate(5);
-        return view('admin.users.index')->with('users', $users);
-        
+        $categories = Category::orderBy('id','ASC')->paginate(5);
+        return view('admin.categories.index')->with('categories', $categories);
     }
 
     /**
@@ -30,7 +29,7 @@ class UsersController extends Controller
     public function create()
     {
         // 
-        return view('admin.users.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -39,16 +38,15 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(CategoryRequest $request)
     {
         //Guardar ->1 forma(Se puede $user = new App\User(); o la 2, $user = new User(); incluimos en la parte de arriba Use App\User; )
+      
 
-
-        $user = new User($request->all());
-        $user->password = bcrypt($request->password);
-        $user->save();        
-        Flash::success("Se ha registrado ".$user->name."de forma exitosa");
-        return redirect()->route('users.index');
+        $category = new Category($request->all());        
+        $category->save();        
+        Flash::success("Se ha registrado la categoria : ".$category->name." de forma exitosa");
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -72,8 +70,8 @@ class UsersController extends Controller
     {
       
         //
-        $user = User::find($id);
-        return view('admin.users.edit')->with('user', $user);
+        $category = Category::find($id);
+        return view('admin.categories.edit')->with('category', $category);
     }
 
     /**
@@ -86,15 +84,21 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         
-        $user = User::find("$id");
-        //   $user->fill($request->all()); Tambien sirve para ahorrar las tres campos que siguen .     
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->type = $request->type;
-        $user->save();
+         /*La forma mas usada es :
+            $category = Category::find($id)
+                {  
+                $category->fill($request->all());
+                }
 
-        flash::warning('El Usuario'. $user->name.'ha sido  editado con exito');
-        return redirect()->route('users.index');
+        */
+
+
+        $category = Category::find("$id");
+        $category->name = $request->name;        
+        $category->save();
+
+        flash::warning('La categoria'. $category->name.'ha sido  editado con exito');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -105,10 +109,12 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
+        $category = Category::find($id);
+        $category-> delete();
 
-        flash("El usuario " . $user->name . " a sido eliminado de forma correcta")->important();
-        return redirect()->route('users.index');
+        flash("La categoria  " . $category->name . " a sido eliminada de forma correcta")->important();
+        return redirect()->route('categories.index');
     }
 }
+
+//311 461 7333 Julio

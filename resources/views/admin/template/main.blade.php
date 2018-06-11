@@ -14,10 +14,12 @@
 	<section class="section-admin">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">@yield('title')</h3>
+				<br>
+				<h1 class="panel-title" style="margin-left: 33%">@yield('title')</h1>
 			</div>
-			<div class="panel-body"><p>prueba</p></div>
+			<div class="panel-body" style="margin-left: 35%" ;><p>Panel de administración Usuarios</p></div>
 			@include('flash::message')
+			@include('admin.template.partials.errors')
 			@yield('content')
 		</div>
 	</section>

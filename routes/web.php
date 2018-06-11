@@ -27,9 +27,32 @@ Route::group(['prefix' => 'admin'], function(){
 	]);
 
 	Route::get('users/{id}/edit', [ 
-		'uses' => 'UserController@edit', 
-		'as' => 'admin.users.edit']);
-	});
+		'uses' => 'UsersController@edit', 
+		'as' => 'admin.users.edit'
+	]);
+
+	//*****************************************************
+
+	Route::resource('categories','CategoriesController');
+	
+	Route::get('categories/{id}/destroy', [
+	'uses' => 'categoriesController@destroy',
+	'as' => 'admin.categories.destroy'
+	]);
+
+	Route::get('categories/{id}/edit', [ 
+		'uses' => 'CategoriesController@edit', 
+		'as' => 'admin.users.edit'
+	]);
+
+
+});
+
+
+
+
+
+
 /*
 Route::get('articles/{nombre}', function($nombre) {
 echo "El nombre es ".$nombre;
