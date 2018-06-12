@@ -14,7 +14,7 @@
 // GET, POST, PUT, DELETE, RESOURCE CON LAS QUE VAMOS A TRABAJAR
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::group(['prefix' => 'admin'], function(){
@@ -42,15 +42,25 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('categories/{id}/edit', [ 
 		'uses' => 'CategoriesController@edit', 
+		'as' => 'admin.categories.edit'
+	]);
+
+	//*****************************************************
+
+	Route::resource('tags','TagsController');
+	
+	Route::get('tags/{id}/destroy', [
+	'uses' => 'tagsController@destroy',
+	'as' => 'admin.tags.destroy'
+	]);
+
+	Route::get('tags/{id}/edit', [ 
+		'uses' => 'TagsController@edit', 
 		'as' => 'admin.users.edit'
 	]);
 
 
 });
-
-
-
-
 
 
 /*
@@ -83,3 +93,27 @@ Route::group(['prefix' => 'articles'] ,function(){
 });
 
 */
+
+Auth::routes();
+
+//**********************************************
+
+Route::get('admin/auth/login', [
+    'uses'  => 'Auth\LoginController@showLoginForm',
+    'as'    => 'admin.auth.login'
+]);
+
+Route::post('admin/auth/login', [
+    'uses'  => 'Auth\LoginController@login',
+    'as'    => 'admin.auth.login'
+]);
+
+Route::get('admin/auth/logout', [
+    'uses'  => 'Auth\LoginController@logout',
+    'as'    => 'admin.auth.logout'
+]);
+
+//**********************************************
+
+Route::get('/home', 'HomeController@index')->name('home');
+
