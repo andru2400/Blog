@@ -3,6 +3,18 @@
 @section('content')
 <div class="container">
 
+<!--Buscador de tags-->
+{!! Form::open(['route' => 'tags.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">@</span>
+	    </div>
+		{!! Form::text('name', null, ['class' => 'form-control col-md-2', 'placeholder' => 'Buscar Tag ...']) !!}
+	{!! Form::close() !!}
+</div>
+<!--fin Buscador de tags-->
+
 <a href="{{ route('tags.create') }}" class="btn btn-primary" style="margin: 0px 0px 10px 0px;">Registrar Nuevo Tag</a>
 
 	<table class="table table-striped">

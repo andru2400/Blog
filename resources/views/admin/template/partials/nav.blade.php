@@ -23,6 +23,10 @@
         <a class="nav-link" href="{{ route('tags.index') }}">Tags</a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('articles.index') }}">Articulos</a>
+      </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ Auth::user()->name }}

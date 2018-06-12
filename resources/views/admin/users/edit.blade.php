@@ -19,11 +19,9 @@
 	{!! Form::email('email',$user->email,['class' => 'form-control','placeholder' => 'example@email','required']) !!}	
 </div>
 
-	
-
 <div class="form-group">
 	{!! Form::label('type','Tipo') !!}
-	{!! Form::select('type',['member' => 'Miembro','admin' => 'administrador'], null, ['class' => 'form-control']) !!}	
+	{!! Form::select('type',['member' => 'Miembro','admin' => 'administrador'], $user->type, ['class' => 'form-control']) !!}	
 </div>
 
 <div class="form-group">

@@ -46,8 +46,7 @@ Route::group(['prefix' => 'admin'], function(){
 	]);
 
 	//*****************************************************
-
-	Route::resource('tags','TagsController');
+ 	Route::resource('tags','TagsController');
 	
 	Route::get('tags/{id}/destroy', [
 	'uses' => 'tagsController@destroy',
@@ -59,6 +58,19 @@ Route::group(['prefix' => 'admin'], function(){
 		'as' => 'admin.users.edit'
 	]);
 
+	//*****************************************************
+
+	Route::resource('articles','ArticlesController');
+	
+	Route::get('articles/{id}/destroy', [
+	'uses' => 'articlesController@destroy',
+	'as' => 'admin.articles.destroy'
+	]);
+
+	Route::get('articles/{id}/edit', [ 
+		'uses' => 'articlesController@edit', 
+		'as' => 'admin.articles.edit'
+	]);
 
 });
 
