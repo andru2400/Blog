@@ -17,7 +17,7 @@ class TagsController extends Controller
     public function index(Request $request)
     {
         //se modifico en el capitulo 24 Scope
-        $tags = Tag::search($request->name)->orderBy('id','ASC')->paginate(5);
+        $tags = Tag::Search($request->name)->orderBy('id','ASC')->paginate(5);
         return view('admin.tags.index')->with('tags', $tags);
     }
 

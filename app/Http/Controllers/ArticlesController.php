@@ -8,7 +8,8 @@ use App\Tag;
 use App\Article;
 use App\Image;
 Use Laracasts\Flash\Flash;
-Use App\Http\Request\ArticleRequest;
+Use App\Http\Requests\ArticleRequest;
+
 
 class ArticlesController extends Controller
 {
@@ -17,11 +18,21 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $articles = Article::orderBy('id','ASC')->paginate(5);
-        return view('admin.articles.index')->with('articles', $articles);
+            //$articles = Article::orderBy('id','ASC')->paginate(5);
+            $articles = Article::Search($request->title)->orderBy('id','ASC')->paginate(5);
+
+            //indicamos las relaciones, each Recorrido por cada articulo ->
+
+            $articles->each(function($articles){
+            $articles->category;
+            $articles->user;
+
+        });
+
+            return view('admin.articles.index')->with('articles', $articles);
     }
 
     /**
@@ -77,7 +88,7 @@ class ArticlesController extends Controller
 
     
 
-    /**
+    /**s
      * Display the specified resource.
      *
      * @param  int  $id
@@ -96,7 +107,18 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+          $article = Article::find($id);
+          $article->category;
+          $category = Category::orderBy('name','ASC')->pluck('name', 'id');
+          $tags = Tag::orderBy('name','ASC')->pluck('name','id');
+
+          $my_tags = $article->tags->pluck('id')->ToArray();
+
+        return view('admin.articles.edit')
+        ->with('category', $category)
+        ->with('article', $article)
+        ->with('tags', $tags)
+        ->with('my_tags', $my_tags);
     }
 
     /**
@@ -108,7 +130,14 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::find($id);
+        $article->fill($request->all());
+        $article->save();
+
+        $article->tags()->sync($request->tags);
+
+        Flash::warning('Se ha editado el Articulo'.$article->title.'de forma exitosa!');
+        return redirect()->route('articles.index');
     }
 
     /**

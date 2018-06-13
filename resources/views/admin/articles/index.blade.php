@@ -2,16 +2,27 @@
 @section('title','Lista de Articulos')
 @section('content')
 <div class="container">
+<!--Buscador de Articulos-->
+{!! Form::open(['route' => 'articles.index', 'method' => 'GET', 'class' => 'navbar-form pull-right']) !!}
 
-<a href="{{ route('articles.create') }}" class="btn btn-primary" style="margin: 0px 0px 10px 0px;">Registrar Nueva Categoria</a>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">@</span>
+	    </div>
+		{!! Form::text('title', null, ['class' => 'form-control col-md-4', 'placeholder' => 'Buscar Articulo ...']) !!}
+	{!! Form::close() !!}
+</div>
+<!--fin Buscador de Articulos-->
+
+<a href="{{ route('articles.create') }}" class="btn btn-primary" style="margin: 0px 0px 10px 0px;">Registrar Nuevo Articulo</a>
 
 	<table class="table table-striped">
 		<thead>
 			<th>Id</th>
 			<th>Titulo</th>			
 			<th>Contenido</th>
-			<th>Usuario id</th>
-			<th>categoria id</th>
+			<th>Usuario</th>
+			<th>categoria</th>
 			<th>slug</th>
 
 			<th>Accion</th>
@@ -22,8 +33,8 @@
 				<td>{{ $article->id }}</td>
 				<td>{{ $article->title }}</td>
 				<td>{{ $article->content }}</td>
-				<td>{{ $article->user_id }}</td>
-				<td>{{ $article->category_id }}</td>
+				<td>{{ $article->user->name }}</td>
+				<td>{{ $article->category->name }}</td>
 				<td>{{ $article->slug }}</td>
 
 

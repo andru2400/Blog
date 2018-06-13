@@ -16,10 +16,12 @@ class Tag extends Model
       return $this->belongsToMany('App\Article')->withTimestamps();  
     }
 
+    //LA funcion Scope Busca los resultados de nuestra busqueda en Tag  
     public function scopeSearch($query, $name)
     {
      return $query->where('name', 'LIKE', '%'. $name .'%' );	
     }
+    
 
 
 }

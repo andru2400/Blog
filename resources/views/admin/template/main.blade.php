@@ -17,7 +17,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<br>
-				<h1 class="panel-title" style="margin-left: 35%">@yield('title')</h1>
+				<h1 class="panel-title" style="margin-left:15%">@yield('title')</h1>
 			</div>
 			<div class="panel-body" style="margin-left: 37%" ;><p>Panel de administración Usuarios</p></div>
 			@include('flash::message')
